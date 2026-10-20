@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+*.log
+
+# Доступы к БД и пароль админки — только на сервере, не в репозитории
+backend/config.php
+
+# Старые черновые файлы
+/assets/
