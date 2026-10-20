@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { asset } from './config'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
@@ -5,7 +6,29 @@ import { MapSection } from './components/MapSection'
 import { Cinema } from './components/Cinema'
 import { Footer } from './components/Footer'
 
+// Ссылки на #map доводят до самой карты и ставят её по центру экрана, а не до заголовка секции
+function scrollToMap(smooth = true) {
+  const shell = document.querySelector('.map-shell')
+  if (!shell) return
+  const rect = shell.getBoundingClientRect()
+  const offset = Math.max(16, (window.innerHeight - rect.height) / 2)
+  window.scrollTo({ top: rect.top + window.scrollY - offset, behavior: smooth ? 'smooth' : 'auto' })
+}
+
 export default function App() {
+  useEffect(() => {
+    function onClick(event) {
+      const link = event.target.closest('a[href="#map"]')
+      if (!link) return
+      event.preventDefault()
+      history.replaceState(null, '', '#map')
+      scrollToMap()
+    }
+    document.addEventListener('click', onClick)
+    if (window.location.hash === '#map') setTimeout(() => scrollToMap(false), 300)
+    return () => document.removeEventListener('click', onClick)
+  }, [])
+
   return (
     <div className="page">
       <div className="decor" aria-hidden="true">
