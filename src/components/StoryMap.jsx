@@ -194,6 +194,29 @@ function ClusterLayer({ markers, activeId, onSelect }) {
   return null
 }
 
+// Источник карты (обязателен по лицензии OSM) — свёрнут в кнопку «i», раскрывается по нажатию
+function MapCredits() {
+  const ref = useRef(null)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (ref.current) L.DomEvent.disableClickPropagation(ref.current)
+  }, [])
+
+  return (
+    <div className={`map-credits ${open ? 'is-open' : ''}`} ref={ref}>
+      {open ? (
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+          © OpenStreetMap
+        </a>
+      ) : null}
+      <button type="button" aria-label="Источник карты" aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+        i
+      </button>
+    </div>
+  )
+}
+
 /* ---------- Основной компонент ---------- */
 
 export function StoryMap() {
@@ -438,7 +461,7 @@ export function StoryMap() {
         maxZoom={18}
         worldCopyJump
         zoomControl={false}
-        attributionControl
+        attributionControl={false}
         dragging
         touchZoom
         scrollWheelZoom
@@ -450,9 +473,9 @@ export function StoryMap() {
         <TileLayer
           url={OSM_TILE_URL}
           className="map-tiles"
-          attribution='© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
         />
         <ZoomButtons />
+        <MapCredits />
         <MapEvents onPick={openForm} onMove={updateCardPos} />
         <ClusterLayer markers={markers} activeId={story?.id} onSelect={selectStory} />
         {story ? (
