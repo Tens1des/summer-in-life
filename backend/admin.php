@@ -140,7 +140,7 @@ $csrf = csrf_token();
                         <span><?= h((string)$story['created_at']) ?></span>
                         <?php if (!empty($story['place'])): ?><span><?= h((string)$story['place']) ?></span><?php endif; ?>
                         <span class="coords"><?= h((string)$story['lat']) ?>, <?= h((string)$story['lng']) ?></span>
-                        <span><?= !empty($story['allow_ads']) ? 'Согласие на рекламу: да' : 'Согласие на рекламу: нет' ?></span>
+                        <span><?= !empty($story['allow_ads']) ? 'Участие в конкурсе: да' : 'Участие в конкурсе: нет' ?></span>
                         <a class="maplink" href="https://www.openstreetmap.org/?mlat=<?= rawurlencode((string)$story['lat']) ?>&mlon=<?= rawurlencode((string)$story['lng']) ?>#map=15/<?= rawurlencode((string)$story['lat']) ?>/<?= rawurlencode((string)$story['lng']) ?>" target="_blank" rel="noopener">Открыть точку на карте</a>
                     </div>
                     <div class="text"><?= nl2br(h((string)$story['comment'])) ?></div>

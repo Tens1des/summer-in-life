@@ -407,7 +407,7 @@ export function StoryMap() {
       setTouched(false)
       setSuccess(
         data.message ||
-          'Спасибо! Она появится на карте после проверки. Самые интересные воспоминания мы можем выбрать для наружной рекламы фильма.',
+          'Спасибо! Она появится на карте после проверки. Авторы самых интересных воспоминаний смогут принять участие в конкурсе и выиграть памятные подарки.',
       )
     } catch (err) {
       setServerError(err.message || 'Не удалось сохранить историю.')
@@ -576,9 +576,9 @@ export function StoryMap() {
                 <Check />
               </span>
               <span className="check-text">
-                Разрешаю использовать историю в наружной рекламе фильма.{' '}
+                Принимаю{' '}
                 <a className="link-gold" href="#rules" onClick={(e) => e.stopPropagation()}>
-                  Условия
+                  правила участия в конкурсе
                 </a>
               </span>
             </label>

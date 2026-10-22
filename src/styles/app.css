@@ -1157,7 +1157,7 @@ button.pill:hover { color: var(--ink); }
         transform: rotate(18deg);
     }
 
-    .promo-banner p { font-size: 18px; line-height: 23px; }
+    .promo-banner p { font-size: 16px; line-height: 21px; }
     .promo-banner .btn { min-width: 223px; height: 52px; margin-top: auto; }
 
     .map-shell {
