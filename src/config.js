@@ -24,6 +24,16 @@ export const DEMO_MODE = import.meta.env.VITE_DEMO === '1'
 export const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
 // Страницы сайта: главная с картой и «Время для себя» (отдельная точка входа Vite — time/index.html)
+// Прод-сборка только с картой: пункт «Время для себя» в меню скрыт
+export const SINGLE_PAGE = import.meta.env.VITE_SINGLE_PAGE === '1'
+
+// Яндекс.Метрика (есть только в прод-сборке)
+export const YM_ID = Number(import.meta.env.VITE_YM_ID) || 0
+
+export function reachGoal(goal) {
+  if (YM_ID && typeof window.ym === 'function') window.ym(YM_ID, 'reachGoal', goal)
+}
+
 export const PAGES = {
   map: import.meta.env.BASE_URL,
   time: `${import.meta.env.BASE_URL}time/`,

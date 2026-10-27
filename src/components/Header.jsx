@@ -1,11 +1,11 @@
-import { AFISHA_URL, PAGES } from '../config'
+import { AFISHA_URL, PAGES, SINGLE_PAGE } from '../config'
 import { Button } from './Button'
 
 const items = [
   { id: 'map', label: 'Карта лучшего лета', href: PAGES.map },
   { id: 'time', label: 'Время для себя', href: PAGES.time },
   { id: 'about', label: 'О фильме', href: '#about', desktopOnly: true },
-]
+].filter((item) => !(SINGLE_PAGE && item.id === 'time'))
 
 /** Шапка из макета: меню-«пилюля» слева (текущая страница — жёлтая), «Купить билеты» справа. */
 export function Header({ current }) {

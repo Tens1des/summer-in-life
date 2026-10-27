@@ -11,7 +11,7 @@ import {
   OSM_TILE_URL,
 } from '../config'
 import { fetchStories, submitStory } from '../api'
-import { asset } from '../config'
+import { asset, reachGoal } from '../config'
 import { Button } from './Button'
 import { Check, Close, Spinner } from './Icons'
 
@@ -430,6 +430,7 @@ export function StoryMap() {
         allow_ads: agreeAds,
       })
 
+      reachGoal('story_sent')
       setPendingPins((pins) => [...pins, { id: data.id || String(Date.now()), ...point }])
       setPoint(null)
       setComment('')

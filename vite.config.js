@@ -71,17 +71,51 @@ function mockApi() {
   }
 }
 
+// Прод (luchsheeleto2026.ru): только страница с картой, без «Время для себя»
+const singlePage = process.env.VITE_SINGLE_PAGE === '1'
+
+// Яндекс.Метрика — подставляется только в сборку с VITE_YM_ID (прод), в демо и dev её нет
+function yandexMetrika(id) {
+  return {
+    name: 'yandex-metrika',
+    transformIndexHtml(html) {
+      const counter = `<!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${id}', 'ym');
+
+      ym(${id}, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <!-- /Yandex.Metrika counter -->`
+      const noscript = `<noscript><div><img src="https://mc.yandex.ru/watch/${id}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>`
+      return html
+        .replace('</head>', `    ${counter}\n  </head>`)
+        .replace('<body>', `<body>\n    ${noscript}`)
+    },
+  }
+}
+
 export default defineConfig({
   // GitHub Pages открывает сайт в подпапке /<repo>/ — путь задаётся при сборке
   base: process.env.BASE_PATH || '/',
-  plugins: [react(), useMock && mockApi()].filter(Boolean),
+  plugins: [
+    react(),
+    useMock && mockApi(),
+    process.env.VITE_YM_ID && yandexMetrika(process.env.VITE_YM_ID),
+  ].filter(Boolean),
   build: {
     rollupOptions: {
       // Две страницы: главная с картой и «Время для себя»
-      input: {
-        main: 'index.html',
-        time: 'time/index.html',
-      },
+      input: singlePage
+        ? { main: 'index.html' }
+        : {
+            main: 'index.html',
+            time: 'time/index.html',
+          },
     },
   },
   server: {
