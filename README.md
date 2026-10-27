@@ -40,6 +40,9 @@ npm run build
 
 ## Что где
 
+- Две страницы (Vite multi-page): `index.html` — карта лучшего лета, `time/index.html` — «Время для себя».
+  Ссылки между ними — `PAGES` в `src/config.js`, меню — `src/components/Header.jsx`.
+- `src/TimeApp.jsx`, `src/components/time/`, `src/styles/time.css` — страница «Время для себя».
 - `src/components/StoryMap.jsx` — карта: пины, кластеры, карточка истории, форма, ошибки, успех, «На проверке».
 - `src/config.js` — ссылка на Афишу, трейлер, центр карты, тайлы, лимиты текста.
 - `src/styles/app.css` — вся вёрстка (Desktop 1440 / Mobile 375 по Figma).
@@ -52,3 +55,6 @@ npm run build
   коммерческий провайдер тайлов: поменять `OSM_TILE_URL` в `src/config.js`.
 - Подпись «Выбранная точка: …» берётся из OSM Nominatim (обратное геокодирование).
 - Кнопка «Смотреть трейлер» пока ведёт на страницу фильма на Афише — `TRAILER_URL` в `src/config.js`.
+- Картинки «Время для себя» `village.jpg`, `tour-*.jpg`, `map-illustration.jpg` в `public/assets/` — временные,
+  вырезаны из скриншота макета 1x (Figma MCP упёрся в лимит тарифа). Заменить экспортом из Figma в 2x
+  с теми же именами файлов. В `map-illustration.jpg` слева «запечена» белая карточка — в экспорте её быть не должно.

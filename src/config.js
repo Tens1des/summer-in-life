@@ -23,5 +23,11 @@ export const DEMO_MODE = import.meta.env.VITE_DEMO === '1'
 
 export const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`
 
+// Страницы сайта: главная с картой и «Время для себя» (отдельная точка входа Vite — time/index.html)
+export const PAGES = {
+  map: import.meta.env.BASE_URL,
+  time: `${import.meta.env.BASE_URL}time/`,
+}
+
 export const MAX_STORY_LENGTH = 300
 export const MIN_STORY_LENGTH = 10

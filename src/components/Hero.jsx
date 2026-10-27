@@ -1,4 +1,4 @@
-import { AFISHA_URL, asset } from '../config'
+import { asset } from '../config'
 import { Button } from './Button'
 
 export function Hero() {
@@ -11,18 +11,6 @@ export function Hero() {
         <img className="hm-petal hm-petal-a" src={asset('sunflower-2.png')} alt="" aria-hidden="true" />
         <img className="hm-petal hm-petal-b" src={asset('sunflower-3.png')} alt="" aria-hidden="true" />
 
-        <Button
-          as="a"
-          variant="dark"
-          size="sm"
-          icon="external"
-          className="hm-tickets"
-          href={AFISHA_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Купить билеты
-        </Button>
         <img className="hm-poster" src={asset('poster.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
         <div className="hm-copy">
           <p className="hm-meta">В кино с 12 ноября · 6+</p>

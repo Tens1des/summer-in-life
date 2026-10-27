@@ -1,13 +1,14 @@
-import { ArrowDown, ArrowExternal } from './Icons'
+import { ArrowDown, ArrowExternal, Play } from './Icons'
 
 const icons = {
   external: ArrowExternal,
   down: ArrowDown,
+  play: Play,
 }
 
 /**
  * Кнопка-«пилюля» из макета: текст слева, круглая иконка справа.
- * variant: yellow | dark | white | muted
+ * variant: yellow | dark | white | ghost | muted
  */
 export function Button({
   as: Comp = 'button',
@@ -26,7 +27,7 @@ export function Button({
     >
       <span className="btn-label">{children}</span>
       {Icon ? (
-        <span className="btn-icon" aria-hidden="true">
+        <span className={`btn-icon btn-icon-${icon}`} aria-hidden="true">
           <Icon />
         </span>
       ) : null}

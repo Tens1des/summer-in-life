@@ -44,7 +44,7 @@ export default function App() {
         <img className="petal p9 faint" src={asset('petal-7.png')} alt="" />
       </div>
 
-      <Header />
+      <Header current="map" />
       <Hero />
       <MapSection />
       <Cinema />

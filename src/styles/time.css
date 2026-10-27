@@ -1,0 +1,891 @@
+/* Страница «Время для себя» — по макету Figma (Desktop 1440 / Mobile 375). Общие токены и кнопки — в app.css */
+
+.th-sunflower,
+.th-meta,
+.ticket-heading,
+.stub-caption,
+.stub-buy { display: none; }
+
+.time-hero .hm-petal { display: none; }
+
+.card-surface {
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(30, 40, 20, .08);
+}
+
+.section-title {
+    margin: 0;
+    color: #555;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -.01em;
+}
+
+.section-sub {
+    margin: 10px 0 0;
+    color: var(--text);
+    font-size: 17px;
+    line-height: 27px;
+}
+
+.time-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 104px;
+    margin-top: 104px;
+}
+
+.time-sections > * { scroll-margin-top: 24px; }
+
+/* ---------- Первый экран ---------- */
+
+.th-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    margin-top: 16px;
+    padding: 32px;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(30, 40, 20, .08);
+}
+
+.th-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    min-width: 0;
+}
+
+.th-tags { margin-top: 0; }
+
+.th-title {
+    max-width: 720px;
+    margin: 0;
+    color: #555;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    letter-spacing: -.01em;
+}
+
+.th-text {
+    margin: 14px 0 0;
+    color: var(--text-2);
+    font-size: 19px;
+    line-height: 30px;
+}
+
+.th-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.th-actions .btn { min-width: 240px; }
+
+.th-poster {
+    flex: 0 0 auto;
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(20, 20, 20, .2);
+}
+
+/* ---------- Как это работает ---------- */
+
+.how { padding: 40px; }
+
+.how-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.how-cta { flex: 0 0 auto; min-width: 292px; }
+
+.steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Пунктир от первого шага к последнему; кружки шагов «вырезают» его белой обводкой */
+.steps::before {
+    content: "";
+    position: absolute;
+    top: 27px;
+    left: 28px;
+    right: calc((100% - 72px) / 4 - 28px);
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--yellow) 0 8px, transparent 8px 14px);
+}
+
+.step { position: relative; }
+
+.step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 0 6px #fff;
+    color: var(--ink);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.step:last-child .step-num { background: var(--ink-btn); color: var(--yellow); }
+
+.step-title {
+    margin: 22px 0 0;
+    color: #1f1f1f;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 25px;
+    text-wrap: balance;
+}
+
+.step-text {
+    max-width: 250px;
+    margin: 8px 0 0;
+    color: #555;
+    font-size: 15px;
+    line-height: 23px;
+}
+
+/* ---------- Путёвка ---------- */
+
+.ticket {
+    position: relative;
+    display: grid;
+    grid-template-columns: 440px minmax(0, 1fr) 128px;
+    min-height: 451px;
+    overflow: hidden;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 20px 50px rgba(30, 40, 20, .1);
+}
+
+.ticket-photo { position: relative; }
+
+.ticket-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ticket-photo::after {
+    content: "";
+    position: absolute;
+    inset: 50% 0 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .45));
+}
+
+.ticket-photo-title {
+    position: absolute;
+    left: 32px;
+    bottom: 34px;
+    z-index: 1;
+    margin: 0;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 52px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, .3);
+}
+
+.ticket-photo-title span {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.ticket-main { padding: 32px; }
+
+.ticket-labels { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+.label {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 12px;
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.label-yellow { background: #fff0b8; }
+.label-outline { height: 30px; box-shadow: inset 0 0 0 1px #e3e3e3; }
+
+.route {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.route-point { display: flex; flex-direction: column; }
+.route-point-end { align-items: flex-end; }
+
+.route-caption {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.route-city {
+    margin-top: 4px;
+    color: var(--ink-btn);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 35px;
+}
+
+.route-path {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 6px;
+}
+
+.route-line {
+    position: relative;
+    align-self: stretch;
+    height: 10px;
+}
+
+.route-line::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 18px;
+    right: 18px;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, var(--ink-btn) 0 6px, transparent 6px 10px);
+}
+
+.route-line,
+.route-line::after { background: radial-gradient(circle 5px at 5px 5px, var(--yellow) 3px, var(--ink-btn) 3.5px, var(--ink-btn) 4.5px, transparent 5px) left / 10px 10px no-repeat; }
+
+.route-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+}
+
+.ticket-fields {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    margin: 24px 0 0;
+    border-top: 1px solid #e8e8e8;
+}
+
+.ticket-field {
+    grid-column: span 2;
+    padding: 15px 20px 14px 0;
+}
+
+.f-program,
+.f-duration {
+    grid-column: span 3;
+    border-top: 1px solid #e8e8e8;
+}
+
+.ticket-field dt {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.ticket-field dd {
+    margin: 6px 0 0;
+    color: var(--ink-btn);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+
+.f-program dd { max-width: 300px; }
+
+.ticket-buy { min-width: 211px; margin-top: 24px; }
+
+.ticket-stub {
+    position: relative;
+    background: var(--yellow);
+}
+
+/* Перфорация и полукруглые вырезы на линии отрыва */
+.ticket-stub::before {
+    content: "";
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    left: 0;
+    width: 2px;
+    background: repeating-linear-gradient(180deg, var(--ink-btn) 0 6px, transparent 6px 11px);
+}
+
+.ticket-stub::after,
+.stub-link::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.ticket-stub::after { bottom: -16px; }
+.stub-link::before { top: -16px; }
+
+.stub-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 14px 0 33px;
+    color: var(--ink);
+}
+
+.stub-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+.stub-barcode { width: 56px; height: 169px; fill: var(--ink-btn); }
+
+.stub-link:hover .stub-title { text-decoration: underline; text-underline-offset: 4px; }
+
+/* ---------- Что входит в тур ---------- */
+
+.tour-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+}
+
+.tour-card {
+    padding: 16px 16px 24px;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: 0 16px 40px rgba(20, 20, 20, .08);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.tour-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 50px rgba(20, 20, 20, .14);
+}
+
+.tour-card img {
+    width: 100%;
+    aspect-ratio: 384 / 220;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.tour-card h3 {
+    margin: 20px 8px 0;
+    color: #1f1f1f;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.tour-card p {
+    max-width: 330px;
+    margin: 10px 8px 0;
+    color: #555;
+    font-size: 15px;
+    line-height: 24px;
+}
+
+/* ---------- Карта лучшего лета ---------- */
+
+.map-teaser {
+    position: relative;
+    min-height: 360px;
+    padding: 30px 24px;
+    overflow: hidden;
+    border-radius: 32px;
+    background: #e9efd9;
+    box-shadow: 0 20px 50px rgba(30, 40, 20, .1);
+}
+
+.mt-map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+}
+
+.mt-card {
+    position: relative;
+    width: 480px;
+    max-width: 100%;
+    padding: 32px;
+    border-radius: 24px;
+    background: #fff;
+}
+
+.mt-card .section-title { line-height: 44px; }
+
+.mt-card p {
+    margin: 16px 0 0;
+    color: var(--text);
+    font-size: 17px;
+    line-height: 26px;
+}
+
+.mt-open { min-width: 211px; margin-top: 24px; }
+
+/* ---------- О фильме ---------- */
+
+.about {
+    display: grid;
+    grid-template-columns: 420px minmax(492px, 1fr) minmax(200px, 260px);
+    column-gap: 40px;
+    padding: 24px;
+}
+
+.about-copy { display: contents; }
+
+.trailer-preview {
+    position: relative;
+    grid-row: 1 / span 5;
+    height: 226px;
+    overflow: hidden;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.trailer-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+}
+
+.trailer-preview::after {
+    content: "";
+    position: absolute;
+    inset: 40% 0 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .45));
+}
+
+.trailer-preview:hover img { transform: scale(1.03); }
+
+.trailer-play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: -32px 0 0 -32px;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--ink);
+    transition: transform .15s ease;
+}
+
+.trailer-play svg { width: 19px; height: 22px; margin-left: 4px; }
+.trailer-preview:hover .trailer-play { transform: scale(1.08); }
+
+.trailer-caption {
+    position: absolute;
+    left: 24px;
+    bottom: 22px;
+    z-index: 1;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+.about-kicker {
+    grid-column: 2;
+    margin: 8px 0 0;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+}
+
+.about .section-title { grid-column: 2; margin-top: 16px; line-height: 44px; }
+
+.about-text {
+    grid-column: 2;
+    margin: 16px 0 0;
+    color: var(--text);
+    font-size: 17px;
+    line-height: 26px;
+}
+
+.about-actions {
+    grid-column: 2;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.about-actions .btn { flex: 1 1 0; max-width: 240px; min-width: 0; }
+
+.about-facts {
+    grid-column: 3;
+    grid-row: 1 / span 5;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    padding: 33px 0 0 32px;
+    border-left: 1px solid #e8e8e8;
+}
+
+.about-facts dt { color: var(--muted-2); font-size: 15px; line-height: 20px; }
+.about-facts dd { margin: 0; color: var(--ink-btn); font-size: 15px; line-height: 20px; }
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1280px) {
+    .ticket { grid-template-columns: 340px minmax(0, 1fr) 112px; }
+    .about { grid-template-columns: 320px minmax(0, 1fr) 200px; column-gap: 28px; }
+}
+
+@media (max-width: 1100px) {
+    .th-title { font-size: 40px; line-height: 48px; }
+    .th-poster { width: 240px; height: 360px; }
+    .how-head { flex-direction: column; }
+    .steps { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
+    .steps::before { display: none; }
+    .ticket { grid-template-columns: minmax(0, 1fr) 112px; }
+    .ticket-photo { display: none; }
+    .tour-cards { grid-template-columns: 1fr 1fr; }
+    .about { grid-template-columns: 300px minmax(0, 1fr); }
+    .about-facts {
+        grid-column: 2;
+        grid-row: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+        margin-top: 20px;
+        padding: 16px 0 0;
+        border-left: 0;
+        border-top: 1px solid #e8e8e8;
+    }
+    .trailer-preview { grid-row: 1 / span 6; height: 100%; min-height: 226px; }
+}
+
+@media (max-width: 767px) {
+    .card-surface { border-radius: 24px; }
+
+    .section-title { font-size: 28px; line-height: 33px; }
+    .section-sub { margin-top: 8px; font-size: 15px; line-height: 23px; }
+
+    .time-sections { gap: 30px; margin-top: 48px; }
+
+    /* Первый экран: жёлтые волны как на главной */
+    .time-hero {
+        position: relative;
+        z-index: 3;
+        min-height: 740px;
+        padding: 160px 0 48px;
+        background: var(--yellow) url("/assets/waves.svg") center top / 100% 812px no-repeat;
+        text-align: center;
+    }
+
+    .th-sunflower {
+        position: absolute;
+        left: calc(50% - 67px);
+        top: -56px;
+        display: block;
+        width: 190px;
+        pointer-events: none;
+    }
+
+    .time-hero .hm-petal { display: block; }
+    .time-hero .hm-petal-b { top: 470px; right: 15px; }
+
+    .th-card {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        background: none;
+        box-shadow: none;
+    }
+
+    .th-poster {
+        position: relative;
+        width: 150px;
+        height: 224px;
+        border-radius: 14px;
+        box-shadow: 0 20px 40px rgba(90, 64, 0, .25);
+    }
+
+    .th-content { align-items: stretch; gap: 0; width: 100%; max-width: 343px; }
+    .th-tags { display: none; }
+
+    .th-meta {
+        display: block;
+        margin: 0;
+        color: #3a3420;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18px;
+    }
+
+    .th-message { margin-top: 12px; padding: 0 4px; }
+
+    .th-title {
+        color: var(--ink);
+        font-size: 26px;
+        line-height: 30px;
+    }
+
+    .th-text {
+        margin-top: 8px;
+        color: #3a3420;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .th-actions { flex-direction: column; margin-top: 16px; }
+    .th-actions .btn { width: 100%; min-width: 0; padding-left: 24px; }
+
+    .th-buy { background: var(--ink-btn); color: #fff; }
+    .th-buy .btn-icon { background: var(--yellow); color: var(--ink-btn); }
+
+    /* Как это работает */
+    .how { padding: 24px 16px 24px; }
+    .how-head { display: contents; }
+    .how-head > div { padding: 0; }
+    .how { display: flex; flex-direction: column; }
+    .how-cta { order: 3; width: 100%; min-width: 0; margin-top: 24px; padding-left: 24px; }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 24px;
+    }
+
+    .steps::before {
+        display: block;
+        top: 22px;
+        bottom: 36px;
+        left: 21px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: repeating-linear-gradient(180deg, var(--yellow) 0 8px, transparent 8px 14px);
+    }
+
+    .step { display: flex; gap: 16px; }
+    .step-num { flex: 0 0 auto; width: 44px; height: 44px; font-size: 17px; box-shadow: 0 0 0 5px #fff; }
+    .step-title { margin-top: 0; font-size: 17px; line-height: 22px; }
+    .step-text { margin-top: 6px; font-size: 14px; line-height: 20px; }
+
+    /* Путёвка: вертикальный талон, корешок снизу */
+    .ticket {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        border-radius: 24px;
+    }
+
+    .ticket-photo { display: none; }
+
+    .ticket-main { padding: 20px; }
+
+    .ticket-heading { display: block; }
+
+    .ticket-kicker {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .ticket-name {
+        margin: 4px 0 0;
+        color: var(--ink-btn);
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    .ticket-labels { margin-top: 20px; }
+
+    .route {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 10px 12px;
+        margin-top: 20px;
+    }
+
+    .route-path { display: contents; }
+    .route-line { grid-row: 1; grid-column: 2; align-self: end; margin-bottom: 9px; height: 8px; }
+    .route-line,
+    .route-line::after { background-size: 8px 8px; background-image: radial-gradient(circle 4px at 4px 4px, var(--yellow) 2.2px, var(--ink-btn) 2.7px, var(--ink-btn) 3.6px, transparent 4px); }
+    .route-line::after { width: 8px; height: 8px; }
+    .route-line::before { top: 3px; left: 14px; right: 14px; }
+    .route-duration { grid-row: 2; grid-column: 1 / -1; justify-self: start; }
+
+    .route-caption { font-size: 12px; line-height: 16px; }
+    .route-city { margin-top: 2px; font-size: 22px; line-height: 28px; }
+
+    .ticket-fields {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 20px;
+        padding-top: 20px;
+    }
+
+    .ticket-field,
+    .f-program,
+    .f-duration { grid-column: auto; padding: 0; border: 0; }
+
+    .f-duration { order: 4; }
+    .f-date { order: 3; }
+
+    .f-program {
+        grid-column: 1 / -1;
+        order: 5;
+        margin-top: 4px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: #f6f6f3;
+    }
+
+    .ticket-field dd { margin-top: 6px; font-size: 15px; line-height: 21px; }
+
+    .ticket-stub { padding: 22px 20px 20px; }
+
+    .ticket-stub::before {
+        top: 0;
+        bottom: auto;
+        left: 20px;
+        right: 20px;
+        width: auto;
+        height: 2px;
+        background: repeating-linear-gradient(90deg, var(--ink-btn) 0 6px, transparent 6px 11px);
+    }
+
+    .ticket-stub::after,
+    .stub-link::before { top: -14px; bottom: auto; width: 28px; height: 28px; }
+
+    .ticket-stub::after { left: -14px; }
+    .stub-link::before { left: auto; right: -14px; }
+
+    .stub-link { display: block; height: auto; padding: 0; }
+    .stub-caption { display: block; font-size: 15px; line-height: 20px; }
+
+    .stub-title {
+        display: block;
+        margin-top: 2px;
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .stub-barcode { display: none; }
+    .stub-buy { display: flex; width: 100%; margin-top: 16px; padding-left: 24px; }
+
+    /* Что входит в тур */
+    .tour > .section-title,
+    .tour > .section-sub { padding: 0 16px; }
+
+    .tour-cards { grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+    .tour-card { border-radius: 24px; }
+    .tour-card h3 { margin-top: 16px; font-size: 20px; line-height: 26px; }
+    .tour-card h3 br { display: none; }
+
+    /* Карта */
+    .map-teaser {
+        min-height: 0;
+        padding: 16px;
+        border-radius: 24px;
+        background: #fff;
+        box-shadow: 0 20px 50px rgba(30, 40, 20, .08);
+    }
+
+    .mt-map {
+        position: static;
+        height: 200px;
+        border-radius: 20px;
+        object-position: right center;
+    }
+
+    .mt-card .section-title { line-height: 33px; }
+    .mt-card { width: auto; margin-top: 20px; padding: 0; border-radius: 0; }
+    .mt-card p { margin-top: 12px; font-size: 15px; line-height: 23px; }
+    .mt-open { width: 100%; margin-top: 20px; padding-left: 24px; }
+
+    /* О фильме */
+    .about {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 16px 20px;
+    }
+
+    .trailer-preview { height: 200px; min-height: 0; }
+    .about-kicker { display: none; }
+    .about .section-title { margin-top: 20px; line-height: 33px; }
+    .about-text { font-size: 15px; line-height: 23px; }
+
+    .about-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 16px;
+        padding: 16px 0 0;
+        border-left: 0;
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .about-facts dt { font-size: 13px; line-height: 18px; }
+    .about-facts dd { margin-top: 2px; }
+
+    .about-actions { flex-direction: column-reverse; gap: 16px; margin-top: 20px; }
+    .about-actions .btn { width: 100%; max-width: none; flex: 0 0 auto; padding-left: 24px; }
+
+    /* Подсолнухи у подвала не должны закрывать кнопки последней карточки */
+    .page-time .sun-r { bottom: 60px; right: -170px; }
+    .page-time .sun-l { bottom: 20px; }
+}

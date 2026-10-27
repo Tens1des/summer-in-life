@@ -1,21 +1,32 @@
-import { AFISHA_URL } from '../config'
+import { AFISHA_URL, PAGES } from '../config'
 import { Button } from './Button'
 
-export function Header() {
+const items = [
+  { id: 'map', label: 'Карта лучшего лета', href: PAGES.map },
+  { id: 'time', label: 'Время для себя', href: PAGES.time },
+  { id: 'about', label: 'О фильме', href: '#about', desktopOnly: true },
+]
+
+/** Шапка из макета: меню-«пилюля» слева (текущая страница — жёлтая), «Купить билеты» справа. */
+export function Header({ current }) {
   return (
     <header className="header container">
-      <nav className="nav-tabs" aria-label="Разделы">
-        <a className="nav-tab" href="#about">
-          О фильме
-        </a>
-        <a className="nav-tab" href="#map">
-          Карта
-        </a>
+      <nav className="nav-menu" aria-label="Разделы">
+        {items.map((item) => (
+          <a
+            key={item.id}
+            className={`nav-item ${item.id === current ? 'is-active' : ''} ${item.desktopOnly ? 'd-only' : ''}`.trim()}
+            href={item.href}
+            aria-current={item.id === current ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
       </nav>
       <Button
         as="a"
         variant="yellow"
-        size="sm"
+        size="lg"
         icon="external"
         className="header-tickets"
         href={AFISHA_URL}

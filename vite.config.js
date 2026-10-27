@@ -75,6 +75,15 @@ export default defineConfig({
   // GitHub Pages открывает сайт в подпапке /<repo>/ — путь задаётся при сборке
   base: process.env.BASE_PATH || '/',
   plugins: [react(), useMock && mockApi()].filter(Boolean),
+  build: {
+    rollupOptions: {
+      // Две страницы: главная с картой и «Время для себя»
+      input: {
+        main: 'index.html',
+        time: 'time/index.html',
+      },
+    },
+  },
   server: {
     port: 5173,
     proxy: useMock
