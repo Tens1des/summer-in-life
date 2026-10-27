@@ -586,7 +586,9 @@ export function StoryMap() {
             />
             <div className={`counter ${textError ? 'is-error' : ''}`}>
               {textError ? `${textError} · ` : ''}
-              {length} / {MAX_STORY_LENGTH}
+              <span className="nowrap">
+                {length} / {MAX_STORY_LENGTH}
+              </span>
             </div>
 
             <div className="contact-fields">
@@ -650,7 +652,7 @@ export function StoryMap() {
                   <Spinner />
                   <span className="btn-label">Отправляем…</span>
                 </button>
-              ) : ready ? (
+              ) : length > 0 ? (
                 <Button type="submit" variant="yellow" size="md" icon="external" className="btn-submit">
                   Отправить историю
                 </Button>

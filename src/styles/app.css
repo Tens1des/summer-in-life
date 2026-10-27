@@ -770,6 +770,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .counter.is-error { color: var(--error); }
+.nowrap { white-space: nowrap; }
 
 .contact-fields {
     display: grid;
