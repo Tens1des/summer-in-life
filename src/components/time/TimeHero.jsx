@@ -6,7 +6,8 @@ const poster = 'Постер фильма «Лучшее лето в жизни�
 export function TimeHero() {
   return (
     <section className="time-hero">
-      <img className="th-sunflower" src={asset('sunflower-hero.png')} alt="" aria-hidden="true" />
+      <img className="th-sunflower th-sunflower-top" src={asset('sunflower-hero.png')} alt="" aria-hidden="true" />
+      <img className="th-sunflower th-sunflower-side" src={asset('sunflower-hero.png')} alt="" aria-hidden="true" />
       <img className="hm-petal hm-petal-a" src={asset('sunflower-2.png')} alt="" aria-hidden="true" />
       <img className="hm-petal hm-petal-b" src={asset('sunflower-3.png')} alt="" aria-hidden="true" />
 

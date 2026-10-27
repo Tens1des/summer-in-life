@@ -633,14 +633,16 @@
         text-align: center;
     }
 
+    /* Подсолнухи как на главной: сверху слева и справа на краю первого экрана */
     .th-sunflower {
         position: absolute;
-        left: calc(50% - 67px);
-        top: -56px;
+        z-index: 1;
         display: block;
-        width: 190px;
         pointer-events: none;
     }
+
+    .th-sunflower-top { left: -70px; top: -56px; width: 190px; }
+    .th-sunflower-side { right: -162px; top: 647px; width: 237px; }
 
     .time-hero .hm-petal { display: block; }
     .time-hero .hm-petal-b { top: 470px; right: 15px; }
@@ -891,5 +893,5 @@
 
     /* Подсолнухи у подвала не должны закрывать кнопки последней карточки */
     .page-time .sun-r { left: auto; bottom: 60px; right: -170px; }
-    .page-time .sun-l { bottom: 20px; }
+    .page-time .sun-l { bottom: 96px; }
 }
