@@ -40,6 +40,9 @@ function ensure_schema(PDO $pdo): void
             comment VARCHAR(300) NOT NULL,
             place VARCHAR(160) NULL DEFAULT NULL,
             allow_ads TINYINT(1) NOT NULL DEFAULT 0,
+            author_name VARCHAR(80) NULL DEFAULT NULL,
+            phone VARCHAR(24) NULL DEFAULT NULL,
+            email VARCHAR(120) NULL DEFAULT NULL,
             status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'pending',
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             reviewed_at TIMESTAMP NULL DEFAULT NULL,
@@ -56,6 +59,16 @@ function ensure_schema(PDO $pdo): void
     }
     if (!in_array('allow_ads', $columns, true)) {
         $pdo->exec('ALTER TABLE stories ADD COLUMN allow_ads TINYINT(1) NOT NULL DEFAULT 0 AFTER place');
+    }
+    // Контакты автора (только для модерации и конкурса, на карту не выводятся)
+    if (!in_array('author_name', $columns, true)) {
+        $pdo->exec('ALTER TABLE stories ADD COLUMN author_name VARCHAR(80) NULL DEFAULT NULL AFTER allow_ads');
+    }
+    if (!in_array('phone', $columns, true)) {
+        $pdo->exec('ALTER TABLE stories ADD COLUMN phone VARCHAR(24) NULL DEFAULT NULL AFTER author_name');
+    }
+    if (!in_array('email', $columns, true)) {
+        $pdo->exec('ALTER TABLE stories ADD COLUMN email VARCHAR(120) NULL DEFAULT NULL AFTER phone');
     }
 
     $done = true;

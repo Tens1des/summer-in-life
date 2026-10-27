@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['story_id'], $_POST['a
 
 $pdo = db();
 $pending = $pdo->query(
-    "SELECT id, lat, lng, comment, place, allow_ads, created_at
+    "SELECT id, lat, lng, comment, place, allow_ads, author_name, phone, email, created_at
      FROM stories
      WHERE status = 'pending'
      ORDER BY created_at ASC"
@@ -113,7 +113,7 @@ $csrf = csrf_token();
     <title>Модерация — Лучшее лето в жизни</title>
     <style>
         :root{--paper:#f5f3ed;--ink:#171713;--green:#14745d;--green-dark:#0d5b48;--red:#a43b31;--muted:#686a63;--line:#dfddd4}
-        *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.page{width:min(1100px,calc(100% - 32px));margin:28px auto 60px}.top{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}h1{margin:5px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,4vw,48px);line-height:1}.logout{color:var(--green-dark);font-weight:700;text-decoration:none}.stats{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.stat{background:#fffefa;border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-size:13px}.stat b{margin-left:4px}.empty{margin-top:20px;background:#fffefa;border:1px solid var(--line);border-radius:18px;padding:24px;color:var(--muted)}.list{display:grid;gap:14px}.story{background:#fffefa;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(38,42,31,.06)}.meta{display:flex;gap:10px;flex-wrap:wrap;color:#777970;font-size:12px}.text{margin:13px 0 17px;font-size:17px;line-height:1.5;white-space:pre-wrap}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.approve{background:var(--green);color:white}.approve:hover{background:var(--green-dark)}.reject{background:#f3e4e1;color:var(--red)}.coords{font-variant-numeric:tabular-nums}.maplink{color:var(--green-dark);text-decoration:none;font-weight:700}
+        *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.page{width:min(1100px,calc(100% - 32px));margin:28px auto 60px}.top{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}h1{margin:5px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(30px,4vw,48px);line-height:1}.logout{color:var(--green-dark);font-weight:700;text-decoration:none}.stats{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.stat{background:#fffefa;border:1px solid var(--line);border-radius:999px;padding:9px 13px;font-size:13px}.stat b{margin-left:4px}.empty{margin-top:20px;background:#fffefa;border:1px solid var(--line);border-radius:18px;padding:24px;color:var(--muted)}.list{display:grid;gap:14px}.story{background:#fffefa;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 8px 24px rgba(38,42,31,.06)}.meta{display:flex;gap:10px;flex-wrap:wrap;color:#777970;font-size:12px}.text{margin:13px 0 17px;font-size:17px;line-height:1.5;white-space:pre-wrap}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:0;border-radius:999px;padding:10px 15px;font-weight:800;cursor:pointer}.approve{background:var(--green);color:white}.approve:hover{background:var(--green-dark)}.reject{background:#f3e4e1;color:var(--red)}.coords{font-variant-numeric:tabular-nums}.maplink{color:var(--green-dark);text-decoration:none;font-weight:700}.contact{margin-top:8px;color:#454740;font-size:13px}
     </style>
 </head>
 <body>
@@ -142,6 +142,11 @@ $csrf = csrf_token();
                         <span class="coords"><?= h((string)$story['lat']) ?>, <?= h((string)$story['lng']) ?></span>
                         <span><?= !empty($story['allow_ads']) ? 'Участие в конкурсе: да' : 'Участие в конкурсе: нет' ?></span>
                         <a class="maplink" href="https://www.openstreetmap.org/?mlat=<?= rawurlencode((string)$story['lat']) ?>&mlon=<?= rawurlencode((string)$story['lng']) ?>#map=15/<?= rawurlencode((string)$story['lat']) ?>/<?= rawurlencode((string)$story['lng']) ?>" target="_blank" rel="noopener">Открыть точку на карте</a>
+                    </div>
+                    <div class="meta contact">
+                        <span><b>Имя:</b> <?= h((string)($story['author_name'] ?? '—')) ?></span>
+                        <span><b>Телефон:</b> <?php if (!empty($story['phone'])): ?><a class="maplink" href="tel:<?= h(preg_replace('/[^\d+]/', '', (string)$story['phone'])) ?>"><?= h((string)$story['phone']) ?></a><?php else: ?>—<?php endif; ?></span>
+                        <span><b>E-mail:</b> <?php if (!empty($story['email'])): ?><a class="maplink" href="mailto:<?= h((string)$story['email']) ?>"><?= h((string)$story['email']) ?></a><?php else: ?>—<?php endif; ?></span>
                     </div>
                     <div class="text"><?= nl2br(h((string)$story['comment'])) ?></div>
                     <form class="actions" method="post">

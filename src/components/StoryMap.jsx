@@ -62,6 +62,23 @@ function clusterIcon(cluster) {
   })
 }
 
+const CONTACT_FIELDS = [
+  { key: 'name', type: 'text', placeholder: 'Ваше имя', autoComplete: 'name', maxLength: 80 },
+  { key: 'phone', type: 'tel', inputMode: 'tel', placeholder: 'Телефон', autoComplete: 'tel', maxLength: 24 },
+  { key: 'email', type: 'email', inputMode: 'email', placeholder: 'E-mail', autoComplete: 'email', maxLength: 120 },
+]
+
+function validateContact({ name, phone, email }) {
+  const errors = {}
+  if (charCount(name.trim()) < 2) errors.name = 'Укажите имя'
+  const digits = phone.replace(/\D/g, '')
+  if (!/^[\d\s()+-]+$/.test(phone.trim()) || digits.length < 10 || digits.length > 15) {
+    errors.phone = 'Укажите телефон, например +7 900 123-45-67'
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim())) errors.email = 'Укажите корректный e-mail'
+  return errors
+}
+
 function charCount(text) {
   return Array.from(text).length
 }
@@ -235,6 +252,7 @@ export function StoryMap() {
   const [point, setPoint] = useState(null) // { lat, lng }
   const [place, setPlace] = useState('')
   const [comment, setComment] = useState('')
+  const [contact, setContact] = useState({ name: '', phone: '', email: '' })
   const [agreeRules, setAgreeRules] = useState(false)
   const [agreeAds, setAgreeAds] = useState(false)
   const [touched, setTouched] = useState(false)
@@ -319,8 +337,14 @@ export function StoryMap() {
       : touched && length < MIN_STORY_LENGTH
         ? 'Напишите хотя бы пару предложений'
         : ''
+  const contactErrors = validateContact(contact)
+  const shownContactErrors = touched ? contactErrors : {}
   const rulesError = touched && !agreeRules ? 'Без согласия с правилами отправить не получится' : ''
-  const ready = length >= MIN_STORY_LENGTH && length <= MAX_STORY_LENGTH && agreeRules
+  const ready =
+    length >= MIN_STORY_LENGTH &&
+    length <= MAX_STORY_LENGTH &&
+    agreeRules &&
+    Object.keys(contactErrors).length === 0
 
   /* Сценарии */
   const closeAll = useCallback(() => {
@@ -384,6 +408,10 @@ export function StoryMap() {
     setTouched(true)
     if (!ready) {
       if (length < MIN_STORY_LENGTH || length > MAX_STORY_LENGTH) textareaRef.current?.focus()
+      else {
+        const firstBad = ['name', 'phone', 'email'].find((key) => contactErrors[key])
+        if (firstBad) document.getElementById(`story-${firstBad}`)?.focus()
+      }
       return
     }
 
@@ -395,6 +423,9 @@ export function StoryMap() {
         lat: point.lat,
         lng: point.lng,
         place,
+        name: contact.name.trim(),
+        phone: contact.phone.trim(),
+        email: contact.email.trim(),
         agree_rules: agreeRules,
         allow_ads: agreeAds,
       })
@@ -554,6 +585,29 @@ export function StoryMap() {
             <div className={`counter ${textError ? 'is-error' : ''}`}>
               {textError ? `${textError} · ` : ''}
               {length} / {MAX_STORY_LENGTH}
+            </div>
+
+            <div className="contact-fields">
+              {CONTACT_FIELDS.map((field) => (
+                <div key={field.key} className="field">
+                  <input
+                    id={`story-${field.key}`}
+                    className={`field-input ${shownContactErrors[field.key] ? 'is-error' : ''}`}
+                    type={field.type}
+                    inputMode={field.inputMode}
+                    autoComplete={field.autoComplete}
+                    placeholder={field.placeholder}
+                    aria-label={field.placeholder}
+                    aria-invalid={Boolean(shownContactErrors[field.key])}
+                    maxLength={field.maxLength}
+                    value={contact[field.key]}
+                    onChange={(event) => setContact((c) => ({ ...c, [field.key]: event.target.value }))}
+                  />
+                  {shownContactErrors[field.key] ? (
+                    <div className="field-error">{shownContactErrors[field.key]}</div>
+                  ) : null}
+                </div>
+              ))}
             </div>
 
             <label className={`check ${rulesError ? 'is-error' : ''}`}>

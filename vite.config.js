@@ -44,6 +44,9 @@ function mockApi() {
           let error = ''
           if (!length) error = 'Напишите короткое воспоминание.'
           else if (length > 300) error = 'Комментарий должен быть не длиннее 300 символов.'
+          else if (String(input.name || '').trim().length < 2) error = 'Укажите имя.'
+          else if (String(input.phone || '').replace(/\D/g, '').length < 10) error = 'Укажите корректный телефон.'
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(input.email || ''))) error = 'Укажите корректный e-mail.'
           else if (!input.agree_rules) error = 'Без согласия с правилами отправить не получится.'
           if (error) {
             res.statusCode = 422
