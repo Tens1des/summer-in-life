@@ -500,6 +500,7 @@ export function StoryMap() {
         zoomSnap={0.25}
         zoomDelta={1}
         bounceAtZoomLimits={false}
+        inertiaMaxSpeed={1500}
       >
         <TileLayer
           url={OSM_TILE_URL}
