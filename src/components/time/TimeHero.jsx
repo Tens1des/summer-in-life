@@ -48,7 +48,7 @@ export function TimeHero() {
               </Button>
             </div>
           </div>
-          <img className="th-poster" src={asset('poster.jpg')} alt={poster} />
+          <img className="th-poster" src={asset('poster-v4.jpg')} alt={poster} />
         </div>
       </div>
     </section>

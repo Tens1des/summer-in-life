@@ -11,7 +11,7 @@ export function Hero() {
         <img className="hm-petal hm-petal-a" src={asset('sunflower-2.png')} alt="" aria-hidden="true" />
         <img className="hm-petal hm-petal-b" src={asset('sunflower-3.png')} alt="" aria-hidden="true" />
 
-        <img className="hm-poster" src={asset('poster.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
+        <img className="hm-poster" src={asset('poster-v4.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
         <div className="hm-copy">
           <p className="hm-meta">В кино с 12 ноября · 6+</p>
           <h1 className="hm-title">Лучшее лето в&nbsp;жизни</h1>
@@ -28,7 +28,7 @@ export function Hero() {
       {/* Десктоп */}
       <div className="container">
         <div className="hero-card">
-          <img className="hero-poster" src={asset('poster.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
+          <img className="hero-poster" src={asset('poster-v4.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
           <div className="hero-content">
             <h1 className="hero-title">Лучшее лето в жизни</h1>
             <ul className="tags" aria-label="О фильме">

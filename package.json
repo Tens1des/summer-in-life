@@ -10,7 +10,8 @@
     "api": "php -S 127.0.0.1:8766 -t backend",
     "dev:mock": "MOCK_API=1 vite",
     "build:demo": "VITE_DEMO=1 vite build",
-    "build:prod": "VITE_SINGLE_PAGE=1 VITE_YM_ID=113827179 npm run build"
+    "build:prod": "VITE_YM_ID=113827179 npm run build",
+    "build:prod:map": "VITE_SINGLE_PAGE=1 VITE_YM_ID=113827179 npm run build"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

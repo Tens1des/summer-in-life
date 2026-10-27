@@ -14,7 +14,7 @@ export function Cinema() {
             strokeLinecap="round"
           />
         </svg>
-        <img className="cinema-poster" src={asset('poster.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
+        <img className="cinema-poster" src={asset('poster-v4.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
         <div className="cinema-copy">
           <h2>Смотрите в&nbsp;кино с&nbsp;12&nbsp;ноября</h2>
           <p>
