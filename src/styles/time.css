@@ -564,7 +564,8 @@
     margin-top: 16px;
 }
 
-.about-actions .btn { flex: 1 1 0; max-width: 240px; min-width: 0; }
+.about-actions .btn { flex: 0 0 auto; gap: 10px; padding-left: 24px; }
+.about-buy { min-width: 228px; }
 
 .about-facts {
     grid-column: 3;
@@ -579,6 +580,9 @@
 
 .about-facts dt { color: var(--muted-2); font-size: 15px; line-height: 20px; }
 .about-facts dd { margin: 0; color: var(--ink-btn); font-size: 15px; line-height: 20px; }
+
+/* Подсолнух справа у подвала сдвинут вниз и вправо, чтобы не закрывать факты о фильме */
+.page-time .sun-r { left: calc(50% + 440px); bottom: -200px; }
 
 /* ---------- Адаптив ---------- */
 
@@ -886,6 +890,6 @@
     .about-actions .btn { width: 100%; max-width: none; flex: 0 0 auto; padding-left: 24px; }
 
     /* Подсолнухи у подвала не должны закрывать кнопки последней карточки */
-    .page-time .sun-r { bottom: 60px; right: -170px; }
+    .page-time .sun-r { left: auto; bottom: 60px; right: -170px; }
     .page-time .sun-l { bottom: 20px; }
 }
