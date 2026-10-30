@@ -34,6 +34,12 @@ export function reachGoal(goal) {
   if (YM_ID && typeof window.ym === 'function') window.ym(YM_ID, 'reachGoal', goal)
 }
 
+// Документы конкурса (лежат на сервере в /docs/ рядом с index.html)
+export const DOCS = {
+  consent: `${import.meta.env.BASE_URL}docs/consent.docx`,
+  rules: `${import.meta.env.BASE_URL}docs/rules.docx`,
+}
+
 export const PAGES = {
   map: import.meta.env.BASE_URL,
   time: `${import.meta.env.BASE_URL}time/`,

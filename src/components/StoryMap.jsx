@@ -11,7 +11,7 @@ import {
   OSM_TILE_URL,
 } from '../config'
 import { fetchStories, submitStory } from '../api'
-import { asset, reachGoal } from '../config'
+import { asset, DOCS, reachGoal } from '../config'
 import { Button } from './Button'
 import { Check, Close, Spinner } from './Icons'
 
@@ -253,8 +253,8 @@ export function StoryMap() {
   const [place, setPlace] = useState('')
   const [comment, setComment] = useState('')
   const [contact, setContact] = useState({ name: '', phone: '', email: '' })
-  const [agreeRules, setAgreeRules] = useState(false)
-  const [agreeAds, setAgreeAds] = useState(false)
+  const [agreeConsent, setAgreeConsent] = useState(false)
+  const [agreeContest, setAgreeContest] = useState(false)
   const [touched, setTouched] = useState(false)
   const [serverError, setServerError] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -339,11 +339,13 @@ export function StoryMap() {
         : ''
   const contactErrors = validateContact(contact)
   const shownContactErrors = touched ? contactErrors : {}
-  const rulesError = touched && !agreeRules ? 'Без согласия с правилами отправить не получится' : ''
+  const consentError = touched && !agreeConsent ? 'Без согласия на обработку данных отправить не получится' : ''
+  const contestError = touched && !agreeContest ? 'Нужно принять правила участия в конкурсе' : ''
   const ready =
     length >= MIN_STORY_LENGTH &&
     length <= MAX_STORY_LENGTH &&
-    agreeRules &&
+    agreeConsent &&
+    agreeContest &&
     Object.keys(contactErrors).length === 0
 
   /* Сценарии */
@@ -426,16 +428,17 @@ export function StoryMap() {
         name: contact.name.trim(),
         phone: contact.phone.trim(),
         email: contact.email.trim(),
-        agree_rules: agreeRules,
-        allow_ads: agreeAds,
+        agree_consent: agreeConsent,
+        agree_rules: agreeContest,
+        allow_ads: agreeContest,
       })
 
       reachGoal('story_sent')
       setPendingPins((pins) => [...pins, { id: data.id || String(Date.now()), ...point }])
       setPoint(null)
       setComment('')
-      setAgreeRules(false)
-      setAgreeAds(false)
+      setAgreeConsent(false)
+      setAgreeContest(false)
       setTouched(false)
       setSuccess(
         data.message ||
@@ -614,32 +617,33 @@ export function StoryMap() {
               ))}
             </div>
 
-            <label className={`check ${rulesError ? 'is-error' : ''}`}>
-              <input type="checkbox" checked={agreeRules} onChange={(e) => setAgreeRules(e.target.checked)} />
+            <label className={`check ${consentError ? 'is-error' : ''}`}>
+              <input type="checkbox" checked={agreeConsent} onChange={(e) => setAgreeConsent(e.target.checked)} />
               <span className="check-box">
                 <Check />
               </span>
               <span className="check-text">
-                Согласен с{' '}
-                <a className="link-gold" href="#rules" onClick={(e) => e.stopPropagation()}>
-                  правилами публикации
+                Согласие на{' '}
+                <a className="link-gold" href={DOCS.consent} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                  обработку данных
                 </a>
               </span>
             </label>
-            {rulesError ? <div className="check-error">{rulesError}</div> : null}
+            {consentError ? <div className="check-error">{consentError}</div> : null}
 
-            <label className="check">
-              <input type="checkbox" checked={agreeAds} onChange={(e) => setAgreeAds(e.target.checked)} />
+            <label className={`check ${contestError ? 'is-error' : ''}`}>
+              <input type="checkbox" checked={agreeContest} onChange={(e) => setAgreeContest(e.target.checked)} />
               <span className="check-box">
                 <Check />
               </span>
               <span className="check-text">
                 Принимаю{' '}
-                <a className="link-gold" href="#rules" onClick={(e) => e.stopPropagation()}>
+                <a className="link-gold" href={DOCS.rules} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                   правила участия в конкурсе
                 </a>
               </span>
             </label>
+            {contestError ? <div className="check-error">{contestError}</div> : null}
 
             {serverError ? <div className="form-error">{serverError}</div> : null}
 

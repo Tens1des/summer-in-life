@@ -40,6 +40,7 @@ function ensure_schema(PDO $pdo): void
             comment VARCHAR(300) NOT NULL,
             place VARCHAR(160) NULL DEFAULT NULL,
             allow_ads TINYINT(1) NOT NULL DEFAULT 0,
+            consent_pd TINYINT(1) NOT NULL DEFAULT 0,
             author_name VARCHAR(80) NULL DEFAULT NULL,
             phone VARCHAR(24) NULL DEFAULT NULL,
             email VARCHAR(120) NULL DEFAULT NULL,
@@ -59,6 +60,10 @@ function ensure_schema(PDO $pdo): void
     }
     if (!in_array('allow_ads', $columns, true)) {
         $pdo->exec('ALTER TABLE stories ADD COLUMN allow_ads TINYINT(1) NOT NULL DEFAULT 0 AFTER place');
+    }
+    // Факт согласия на обработку персональных данных (152-ФЗ)
+    if (!in_array('consent_pd', $columns, true)) {
+        $pdo->exec('ALTER TABLE stories ADD COLUMN consent_pd TINYINT(1) NOT NULL DEFAULT 0 AFTER allow_ads');
     }
     // Контакты автора (только для модерации и конкурса, на карту не выводятся)
     if (!in_array('author_name', $columns, true)) {

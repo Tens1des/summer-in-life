@@ -14,6 +14,14 @@ export function Cinema() {
             strokeLinecap="round"
           />
         </svg>
+        <svg className="cinema-swoosh-m" viewBox="0 0 343 334" fill="none" aria-hidden="true">
+          <path
+            d="M300 -40 C225 60 225 150 290 225 C325 265 360 300 410 340"
+            stroke="currentColor"
+            strokeWidth="56"
+            strokeLinecap="round"
+          />
+        </svg>
         <img className="cinema-poster" src={asset('poster-v4.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
         <div className="cinema-copy">
           <h2>Смотрите в&nbsp;кино с&nbsp;12&nbsp;ноября</h2>

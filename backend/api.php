@@ -69,8 +69,11 @@ try {
         response_json(['ok' => false, 'error' => 'Укажите корректный e-mail.'], 422);
     }
 
+    if (empty($input['agree_consent'])) {
+        response_json(['ok' => false, 'error' => 'Без согласия на обработку данных отправить не получится.'], 422);
+    }
     if (empty($input['agree_rules'])) {
-        response_json(['ok' => false, 'error' => 'Без согласия с правилами отправить не получится.'], 422);
+        response_json(['ok' => false, 'error' => 'Нужно принять правила участия в конкурсе.'], 422);
     }
 
     if ($comment === '') {
@@ -87,8 +90,8 @@ try {
     }
 
     $stmt = db()->prepare(
-        "INSERT INTO stories (lat, lng, comment, place, allow_ads, author_name, phone, email, status)
-         VALUES (:lat, :lng, :comment, :place, :allow_ads, :author_name, :phone, :email, 'pending')"
+        "INSERT INTO stories (lat, lng, comment, place, allow_ads, consent_pd, author_name, phone, email, status)
+         VALUES (:lat, :lng, :comment, :place, :allow_ads, 1, :author_name, :phone, :email, 'pending')"
     );
     $stmt->execute([
         ':lat' => round((float)$lat, 7),

@@ -47,7 +47,8 @@ function mockApi() {
           else if (String(input.name || '').trim().length < 2) error = 'Укажите имя.'
           else if (String(input.phone || '').replace(/\D/g, '').length < 10) error = 'Укажите корректный телефон.'
           else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(input.email || ''))) error = 'Укажите корректный e-mail.'
-          else if (!input.agree_rules) error = 'Без согласия с правилами отправить не получится.'
+          else if (!input.agree_consent) error = 'Без согласия на обработку данных отправить не получится.'
+          else if (!input.agree_rules) error = 'Нужно принять правила участия в конкурсе.'
           if (error) {
             res.statusCode = 422
             res.end(JSON.stringify({ ok: false, error }))

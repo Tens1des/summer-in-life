@@ -18,6 +18,9 @@ export function MapSection() {
           <path d="M560 97 L650 0 H760 L690 60 L860 0 H960 L850 97 Z" />
           <path d="M1000 97 L1080 30 L1130 0 H1296 V20 L1180 97 Z" opacity=".55" />
         </svg>
+        <svg className="promo-swoosh-m" viewBox="0 0 200 170" fill="none" aria-hidden="true">
+          <path d="M40 250 C48 120 130 50 290 40" stroke="currentColor" strokeWidth="46" strokeLinecap="round" />
+        </svg>
         <p>
           Авторы самых интересных и запоминающихся историй смогут принять участие в розыгрыше
           памятных призов, среди которых фотоаппарат моментальной печати, набор свечей, тёплые
