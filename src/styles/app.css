@@ -362,40 +362,91 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .promo-banner {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 412px;
     gap: 32px;
-    min-height: 97px;
+    min-height: 459px;
     margin-top: 22px;
-    padding: 20px 24px 20px 32px;
+    padding: 22px 22px 22px 32px;
     overflow: hidden;
     border-radius: 24px;
     background: var(--yellow);
 }
 
-.promo-swoosh-m,
 .cinema-swoosh-m { display: none; }
 
+/* Узор из макета (Vector 45): белый 37% поверх жёлтого, обрезается краями плашки */
 .promo-swoosh {
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    fill: var(--yellow-light);
+    left: 244px;
+    top: 104px;
+    width: 1360px;
+    max-width: none;
+    height: 447px;
+    pointer-events: none;
+}
+
+.promo-copy {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 5px 0 2px;
 }
 
 .promo-banner p {
-    position: relative;
-    max-width: 990px;
+    max-width: 740px;
     margin: 0;
-    color: var(--ink);
-    font-size: 22px;
-    font-weight: 700;
-    line-height: 27px;
+    color: #131313;
+    font-size: 21.6px;
+    font-weight: 600;
+    line-height: 30px;
 }
 
-.promo-banner .btn { position: relative; flex: 0 0 auto; min-width: 210px; }
+.promo-rules.btn-lg {
+    min-width: 323px;
+    height: 80px;
+    padding: 0 9px 0 37px;
+    font-size: 22.7px;
+}
+
+.promo-rules .btn-icon { width: 62px; height: 62px; }
+.promo-rules .btn-icon svg { width: 22px; height: 22px; }
+
+.promo-prize {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 412 / 415;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #ececec;
+}
+
+.promo-prize img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+}
+
+.promo-prize figcaption {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 236px;
+    max-width: calc(100% - 30px);
+    height: 41px;
+    border-radius: 12px;
+    background: #fff;
+    color: #545454;
+    font-size: 18.2px;
+    font-weight: 600;
+}
 
 /* ---------- Карта ---------- */
 
@@ -1073,7 +1124,8 @@ button.pill:hover { color: var(--ink); }
 @media (max-width: 1280px) {
     :root { --gutter: 40px; }
     .hero-title { font-size: 52px; }
-    .promo-banner p { font-size: 19px; line-height: 24px; }
+    .promo-banner { grid-template-columns: minmax(0, 1fr) 340px; min-height: 0; }
+    .promo-banner p { font-size: 19px; line-height: 28px; }
     .cinema-copy h2 { font-size: 38px; line-height: 46px; }
 }
 
@@ -1085,7 +1137,9 @@ button.pill:hover { color: var(--ink); }
     .hero-text { font-size: 16px; line-height: 24px; }
     .hero-share { min-width: 0; }
     .map-intro h2 { font-size: 36px; line-height: 44px; }
-    .promo-banner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px; }
+    .promo-banner { grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; padding: 20px; }
+    .promo-rules.btn-lg { min-width: 0; height: 64px; padding-left: 28px; font-size: 18px; }
+    .promo-rules .btn-icon { width: 50px; height: 50px; }
     .cinema-copy h2 { font-size: 32px; line-height: 40px; }
     .pill-age { position: static; }
 }
@@ -1189,29 +1243,42 @@ button.pill:hover { color: var(--ink); }
     .m-only { display: inline; }
 
     .promo-banner {
-        min-height: 223px;
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+        min-height: 0;
         margin-top: 20px;
         padding: 20px;
-        gap: 8px;
-        justify-content: flex-start;
     }
 
-    .promo-swoosh { display: none; }
+    .promo-swoosh { left: -233px; top: -119px; }
+    .promo-copy { display: contents; }
+    .promo-banner p { position: relative; font-size: 15px; line-height: 21px; }
 
-    .promo-swoosh-m {
-        display: block;
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: auto;
-        max-width: none;
-        height: 100%;
-        min-height: 223px;
-        pointer-events: none;
+    .promo-prize { order: 1; aspect-ratio: 303 / 300; }
+
+    .promo-prize figcaption {
+        left: 11px;
+        top: 10px;
+        bottom: auto;
+        width: 160px;
+        height: 28px;
+        border-radius: 10px;
+        font-size: 13px;
     }
 
-    .promo-banner p { font-size: 16px; line-height: 21px; }
-    .promo-banner .btn { min-width: 223px; height: 52px; margin-top: auto; }
+    .promo-rules.btn-lg {
+        position: relative;
+        order: 2;
+        width: 100%;
+        min-width: 0;
+        height: 56px;
+        padding: 0 6px 0 26px;
+        font-size: 16px;
+    }
+
+    .promo-rules .btn-icon { width: 44px; height: 44px; }
+    .promo-rules .btn-icon svg { width: 17px; height: 17px; }
 
     .map-shell {
         height: 666px;

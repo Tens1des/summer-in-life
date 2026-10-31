@@ -1,4 +1,4 @@
-import { asset } from '../config'
+import { asset, DOCS } from '../config'
 import { Button } from './Button'
 import { StoryMap } from './StoryMap'
 
@@ -15,20 +15,29 @@ export function MapSection() {
       </div>
 
       <aside className="promo-banner">
-        <svg className="promo-swoosh" viewBox="0 0 1296 97" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M560 97 L650 0 H760 L690 60 L860 0 H960 L850 97 Z" />
-          <path d="M1000 97 L1080 30 L1130 0 H1296 V20 L1180 97 Z" opacity=".55" />
-        </svg>
-        <img className="promo-swoosh-m" src={asset('promo-swoosh-m.png')} alt="" aria-hidden="true" />
-        <p>
-          Авторы самых интересных и запоминающихся историй смогут принять участие в розыгрыше
-          памятных призов, среди которых фотоаппарат моментальной печати, набор свечей, тёплые
-          носочки на&nbsp;всю семью и&nbsp;многое другое. С&nbsp;подробным перечнем подарков можно
-          ознакомиться в&nbsp;правилах конкурса
-        </p>
-        <Button as="a" variant="dark" size="sm" icon="external" href="#rules">
-          Правила участия
-        </Button>
+        <img className="promo-swoosh" src={asset('prize-swoosh.svg')} alt="" aria-hidden="true" />
+        <div className="promo-copy">
+          <p>
+            Авторы самых интересных и запоминающихся историй смогут принять участие в&nbsp;розыгрыше
+            памятных призов, а&nbsp;именно, фотоаппаратов моментальной печати!
+          </p>
+          <Button
+            as="a"
+            variant="dark"
+            size="lg"
+            icon="external"
+            className="promo-rules"
+            href={DOCS.rules}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Правила участия
+          </Button>
+        </div>
+        <figure className="promo-prize">
+          <img src={asset('prize-camera.jpg')} alt="Фотоаппарат моментальной печати" />
+          <figcaption>Фотоаппарат</figcaption>
+        </figure>
       </aside>
 
       <StoryMap />
