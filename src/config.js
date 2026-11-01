@@ -36,8 +36,8 @@ export function reachGoal(goal) {
 
 // Документы конкурса (лежат на сервере в /docs/ рядом с index.html)
 export const DOCS = {
-  consent: `${import.meta.env.BASE_URL}docs/consent.docx`,
-  rules: `${import.meta.env.BASE_URL}docs/rules.docx`,
+  consent: `${import.meta.env.BASE_URL}docs/consent.pdf`,
+  rules: `${import.meta.env.BASE_URL}docs/rules.pdf`,
 }
 
 export const PAGES = {
