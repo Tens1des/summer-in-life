@@ -22,7 +22,7 @@ export function TimeHero() {
             <p className="th-meta">В кино с 12 ноября · 6+</p>
 
             <div className="th-message">
-              <h1 className="th-title">Устали настолько, что уже смотрите билеты?</h1>
+              <h1 className="th-title">Устали настолько, что уже смотрите билеты в&nbsp;отпуск?</h1>
               <p className="th-text">
                 Им&nbsp;— приключения, клубника, первая любовь и&nbsp;перевоспитание.{' '}
                 <br className="br-desktop" />
