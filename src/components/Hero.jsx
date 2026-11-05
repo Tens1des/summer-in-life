@@ -13,7 +13,7 @@ export function Hero() {
 
         <img className="hm-poster" src={asset('poster-v4.jpg')} alt="Постер фильма «Лучшее лето в жизни»" />
         <div className="hm-copy">
-          <p className="hm-meta">В кино с 12 ноября · 6+</p>
+          <p className="hm-meta">В кино с 12 ноября · 12+</p>
           <h1 className="hm-title">Лучшее лето в&nbsp;жизни</h1>
           <p className="hm-text">
             Городские дети попадают к бабушке и дедушке в деревню, где их ждут огород,
@@ -35,7 +35,7 @@ export function Hero() {
               <li className="tag tag-dark">12 ноября</li>
               <li className="tag">Комедия</li>
               <li className="tag">Детектив</li>
-              <li className="tag">6+</li>
+              <li className="tag">12+</li>
             </ul>
             <p className="hero-text">
               Семейная комедия о лете, которое пошло совсем не по плану. Городские дети попадают

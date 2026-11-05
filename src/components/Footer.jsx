@@ -23,7 +23,7 @@ export function Footer() {
               Правовая информация
             </a>
           </li>
-          <li className="pill pill-age">6+</li>
+          <li className="pill pill-age">12+</li>
         </ul>
 
         {rulesOpen ? (

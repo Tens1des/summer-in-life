@@ -39,7 +39,7 @@ export function Ticket() {
 
         <ul className="ticket-labels">
           <li className="label label-yellow">Лучшее лето в жизни</li>
-          <li className="label label-outline">6+</li>
+          <li className="label label-outline">12+</li>
         </ul>
 
         <div className="route">

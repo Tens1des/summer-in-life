@@ -17,9 +17,9 @@ export function TimeHero() {
             <ul className="tags th-tags" aria-label="О фильме">
               <li className="tag tag-yellow">В кино с 12 ноября</li>
               <li className="tag">Два часа отпуска без детей</li>
-              <li className="tag">6+</li>
+              <li className="tag">12+</li>
             </ul>
-            <p className="th-meta">В кино с 12 ноября · 6+</p>
+            <p className="th-meta">В кино с 12 ноября · 12+</p>
 
             <div className="th-message">
               <h1 className="th-title">Устали настолько, что уже смотрите билеты в&nbsp;отпуск?</h1>
