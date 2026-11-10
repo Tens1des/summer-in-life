@@ -37,7 +37,7 @@ export function TimeHero() {
                 size="lg"
                 icon="external"
                 className="th-buy"
-                href={AFISHA_URL}
+                href={AFISHA_URL} data-goal="buy_ticket"
                 target="_blank"
                 rel="noopener noreferrer"
               >

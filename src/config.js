@@ -34,6 +34,14 @@ export function reachGoal(goal) {
   if (YM_ID && typeof window.ym === 'function') window.ym(YM_ID, 'reachGoal', goal)
 }
 
+// Клик по любой ссылке с data-goal="…" отправляет эту цель в Метрику (кнопки «Купить билеты» → buy_ticket)
+export function trackGoalClicks() {
+  document.addEventListener('click', (event) => {
+    const link = event.target instanceof Element ? event.target.closest('[data-goal]') : null
+    if (link) reachGoal(link.dataset.goal)
+  }, true)
+}
+
 // Документы конкурса (лежат на сервере в /docs/ рядом с index.html)
 export const DOCS = {
   consent: `${import.meta.env.BASE_URL}docs/consent.pdf`,

@@ -581,8 +581,7 @@ export function StoryMap() {
               ref={textareaRef}
               className={`story-input ${textError ? 'is-error' : ''}`}
               value={comment}
-              onChange={(event) => setComment(event.target.value)}
-              maxLength={MAX_STORY_LENGTH + 100}
+              onChange={(event) => setComment(Array.from(event.target.value).slice(0, MAX_STORY_LENGTH).join(''))}
               placeholder="Расскажите о своём лучшем лете…"
               aria-label="Ваша история"
               aria-invalid={Boolean(textError)}
@@ -689,7 +688,7 @@ export function StoryMap() {
               size="md"
               icon="external"
               className="btn-block"
-              href={AFISHA_URL}
+              href={AFISHA_URL} data-goal="buy_ticket"
               target="_blank"
               rel="noopener noreferrer"
             >

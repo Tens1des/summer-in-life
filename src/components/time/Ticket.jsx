@@ -73,7 +73,7 @@ export function Ticket() {
           size="lg"
           icon="external"
           className="ticket-buy d-only"
-          href={AFISHA_URL}
+          href={AFISHA_URL} data-goal="buy_ticket"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -82,7 +82,7 @@ export function Ticket() {
       </div>
 
       <div className="ticket-stub">
-        <a className="stub-link" href={AFISHA_URL} target="_blank" rel="noopener noreferrer">
+        <a className="stub-link" href={AFISHA_URL} data-goal="buy_ticket" target="_blank" rel="noopener noreferrer">
           <span className="stub-caption">Билеты</span>
           <span className="stub-title">
             <span className="d-only">Билеты </span>на Афише
@@ -99,7 +99,7 @@ export function Ticket() {
           size="lg"
           icon="external"
           className="stub-buy"
-          href={AFISHA_URL}
+          href={AFISHA_URL} data-goal="buy_ticket"
           target="_blank"
           rel="noopener noreferrer"
         >

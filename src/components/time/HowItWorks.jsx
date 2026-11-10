@@ -34,7 +34,7 @@ export function HowItWorks() {
           size="lg"
           icon="external"
           className="how-cta"
-          href={AFISHA_URL}
+          href={AFISHA_URL} data-goal="buy_ticket"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -34,7 +34,7 @@ export function Cinema() {
               variant="dark"
               size="lg"
               icon="external"
-              href={AFISHA_URL}
+              href={AFISHA_URL} data-goal="buy_ticket"
               target="_blank"
               rel="noopener noreferrer"
             >

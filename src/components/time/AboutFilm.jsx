@@ -42,7 +42,7 @@ export function AboutFilm() {
             size="lg"
             icon="external"
             className="about-buy"
-            href={AFISHA_URL}
+            href={AFISHA_URL} data-goal="buy_ticket"
             target="_blank"
             rel="noopener noreferrer"
           >

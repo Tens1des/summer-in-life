@@ -29,7 +29,7 @@ export function Header({ current }) {
         size="lg"
         icon="external"
         className="header-tickets"
-        href={AFISHA_URL}
+        href={AFISHA_URL} data-goal="buy_ticket"
         target="_blank"
         rel="noopener noreferrer"
       >
