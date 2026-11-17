@@ -6,7 +6,7 @@ export function MapSection() {
   return (
     <section id="map" className="map-section container">
       <div className="map-intro">
-        <h2>Расскажи о своём лучшем лете</h2>
+        <h2>Поделись историей и получи шанс выиграть фотоаппарат</h2>
         <p>
           На карте выбери точку, с которой у тебя связаны воспоминания о лучшем лете, и расскажи
           свою историю. <br className="br-desktop" />

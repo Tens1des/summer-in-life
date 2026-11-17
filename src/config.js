@@ -7,7 +7,7 @@ export const TRAILER_URL = AFISHA_URL
 export const MAP_DEFAULT = {
   lat: 55.751244,
   lng: 37.618423,
-  zoom: 10,
+  zoom: 6,
 }
 
 export const OSM_TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
