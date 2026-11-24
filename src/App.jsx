@@ -5,6 +5,7 @@ import { Hero } from './components/Hero'
 import { MapSection } from './components/MapSection'
 import { Cinema } from './components/Cinema'
 import { Footer } from './components/Footer'
+import { WinnersPopup } from './components/WinnersPopup'
 
 // Ссылки на #map доводят до самой карты и ставят её по центру экрана, а не до заголовка секции
 function scrollToMap(smooth = true) {
@@ -49,6 +50,7 @@ export default function App() {
       <MapSection />
       <Cinema />
       <Footer />
+      <WinnersPopup page="map" />
 
       <div className="sun-layer" aria-hidden="true">
         <img className="petal p1" src={asset('sunflower-3.png')} alt="" />
