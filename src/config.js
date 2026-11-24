@@ -55,3 +55,19 @@ export const PAGES = {
 
 export const MAX_STORY_LENGTH = 300
 export const MIN_STORY_LENGTH = 10
+
+// Попап «Победители конкурса». На тесте (GitHub Pages, демо-сборка) показывается всегда,
+// в прод-сборке — только с VITE_WINNERS=1 (добавить в build:prod:map, когда объявляем на боевом).
+export const SHOW_WINNERS = DEMO_MODE || import.meta.env.VITE_WINNERS === '1'
+
+// Пять победителей. ЗАГЛУШКИ — заменить реальными данными перед публикацией.
+export const WINNERS = {
+  date: '25 ноября 2026',
+  list: [
+    { name: 'Имя Фамилия', email: 'anna*****@mail.ru', place: 'Деревня Озерки' },
+    { name: 'Имя Фамилия', email: 'ivan*****@gmail.com', place: 'Люберцы' },
+    { name: 'Имя Фамилия', email: 'olga*****@yandex.ru', place: 'Санкт-Петербург' },
+    { name: 'Имя Фамилия', email: 'serg*****@mail.ru', place: 'Тверь' },
+    { name: 'Имя Фамилия', email: 'mari*****@gmail.com', place: 'Мытищи' },
+  ],
+}
