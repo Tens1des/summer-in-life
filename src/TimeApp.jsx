@@ -1,6 +1,7 @@
 import { asset } from './config'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { WinnersPopup } from './components/WinnersPopup'
 import { TimeHero } from './components/time/TimeHero'
 import { HowItWorks } from './components/time/HowItWorks'
 import { Ticket } from './components/time/Ticket'
@@ -37,6 +38,7 @@ export default function TimeApp() {
         </div>
       </main>
       <Footer />
+      <WinnersPopup page="time" />
 
       <div className="sun-layer" aria-hidden="true">
         <img className="sun sun-l" src={asset('sunflower-bottom.png')} alt="" />
