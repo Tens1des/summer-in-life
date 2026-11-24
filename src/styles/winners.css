@@ -1,0 +1,101 @@
+/* ---------- Попап «Победители конкурса» ---------- */
+.winners-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: rgba(20, 20, 20, .55);
+    overflow-y: auto;
+    animation: winners-fade .25s ease-out;
+}
+.winners-modal {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 40px 40px 36px;
+    border-radius: 32px;
+    background: #fff;
+    box-shadow: var(--card-shadow);
+    animation: winners-rise .3s ease-out;
+}
+.winners-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: var(--pill);
+    color: var(--ink);
+    cursor: pointer;
+}
+.winners-close:hover { background: var(--yellow-light); }
+.winners-close svg { width: 18px; height: 18px; }
+.winners-head { display: flex; align-items: center; gap: 20px; padding-right: 44px; }
+.winners-prize {
+    flex: none;
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 20px;
+    background: var(--yellow-light);
+}
+.winners-kicker {
+    display: inline-block;
+    margin: 0 0 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--yellow);
+    font-size: 13px;
+    font-weight: 600;
+}
+.winners-title { margin: 0; font-size: 30px; line-height: 1.15; font-weight: 800; letter-spacing: -.02em; }
+.winners-lead { margin: 20px 0 0; font-size: 16px; color: var(--text); }
+.winners-lead strong { color: var(--ink); }
+.winners-list { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; }
+.winners-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 18px;
+    background: var(--pill);
+}
+.winners-num {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--ink-btn);
+    color: var(--yellow);
+    font-weight: 700;
+}
+.winners-info { display: flex; flex-direction: column; min-width: 0; }
+.winners-name { font-weight: 700; font-size: 16px; }
+.winners-meta { font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.winners-note { margin: 18px 0 0; font-size: 14px; color: var(--muted); }
+.winners-date { margin: 8px 0 0; font-size: 15px; font-weight: 600; }
+.winners-cta { margin-top: 24px; width: 100%; }
+
+@keyframes winners-fade { from { opacity: 0; } }
+@keyframes winners-rise { from { opacity: 0; transform: translateY(16px); } }
+
+@media (max-width: 767px) {
+    .winners-overlay { padding: 12px; align-items: flex-start; }
+    .winners-modal { padding: 28px 20px 20px; border-radius: 24px; }
+    .winners-head { gap: 14px; }
+    .winners-prize { width: 64px; height: 64px; border-radius: 16px; }
+    .winners-title { font-size: 22px; }
+    .winners-lead { font-size: 15px; }
+    .winners-item { padding: 10px 12px; }
+    .winners-num { width: 32px; height: 32px; }
+}
