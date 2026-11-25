@@ -71,11 +71,7 @@ export function WinnersPopup({ page = 'map' }) {
             <li key={index} className="winners-item">
               <span className="winners-num">{index + 1}</span>
               <span className="winners-info">
-                <span className="winners-name">{winner.name}</span>
-                <span className="winners-meta">
-                  {winner.email}
-                  {winner.place ? ` · ${winner.place}` : ''}
-                </span>
+                <span className="winners-name">{winner.email}</span>
               </span>
             </li>
           ))}
